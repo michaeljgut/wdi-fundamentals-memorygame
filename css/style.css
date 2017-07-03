@@ -1,6 +1,9 @@
+/* File: style.css
+Author: Michael Gutleber
+Date: 7/3/2017
+Desc: Used for the Concentration Card Game. */
 h1 {
 	font-family: Raleway, sans-serif;
-/*	color: #0D2C40;*/
 	color: white;
 	letter-spacing: 1px;
 	font-weight: 400;
@@ -40,7 +43,7 @@ header {
 
 .header {
 	margin: 0 20px;
-	text-decoration: none;
+	text-decoration: none;	/* Remove underline */
 	color: white;
 }
 
@@ -92,7 +95,15 @@ footer {
 a {
 	border-bottom: 2px solid transparent;
 }
-
+/* Underline the anchors when the user moves the mouse over them */
 a:hover {
 	border-bottom: 2px solid white;
+}
+
+button {
+	background-color: rgb(200,50,50);
+	font-size: 20px;
+	color: white;
+	padding: 5px 20px;
+	margin: 15px 0 -5px 0;
 }

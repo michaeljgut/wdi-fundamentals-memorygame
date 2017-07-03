@@ -1,3 +1,8 @@
+<!-- File: index.html
+Author: Michael Gutleber
+Date: 7/3/2017
+Desc: Concentration Card Game - The cards for the game are created in main.js and appended to the
+div with id "game-board." -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +24,9 @@
 <p>This is a great game to challenge your memory and compare yourself to others. See who has the best memory!</p>
 <h2>About The Author</h2>
 <p>Learn more about Michael Gutleber through his <a href="https://www.linkedin.com/in/michael-gutleber-18867911">linkedin account</a> or follow him on <a href="https://twitter.com/michaeljgut2">twitter</a></p>
-<div>
-	<img src="images/back.png" alt="Queen of Diamonds">
-	<img src="images/back.png" alt="Queen of Hearts">
-	<img src="images/back.png" alt="King of Diamonds">
-	<img src="images/back.png" alt="King of Hearts">
-</div>
+<div id="game-board"></div>
+<button>Reset</button>
+<p>Score: <span id="score">0</span></p>
 </main>
 <footer class="clearfix">
 	<p class="copyright">Copyright 2017</p>
