@@ -4,8 +4,8 @@ Date: 7/3/2017
 Concentration Card Game - basic simulation of the game only with 4 cards: the queen of hearts,
 queen of diamonds, king of hearts and king of diamonds. Cards are selected by clicking on them. 
 After 2 cards are selected, their ranks are compared. When a match is found, the score is increased 
-by 1. If no match is found, the user must press the reset button to turn the cards back over. To 
-reset the score, the screen must be refreshed. */
+by 1. If no match is found, the user must press the next turn button to turn the cards back over. To 
+reset the score, the user must press the new game button. */
 
 // The cards array holds the 4 cards.
 var cards = [
@@ -73,9 +73,9 @@ var flipCard = function() {
 }
 
 // shuffleCards will use an algorithm from the https://jsperf.com/array-shuffle-comparator/5 web 
-// site which I modified to "shuffle" the cards. Pick a card at random from 0 to the length of the 
-// cards array - 1. Swap this card with the last card. Then repeat this process only picking a
-// random card from 0 to the length - 2, then 0 to the length - 3 etc. until n = 0 and all the
+// site which I modified to "shuffle" the cards array. Pick a card at random from 0 to the length 
+// of the cards array - 1. Swap this card with the last card. Then repeat this process only picking
+// a random card from 0 to the length - 2, then 0 to the length - 3 etc. until n = 0 and all the
 // cards have been shuffled.
 
 var shuffleCards = function() {
@@ -98,8 +98,10 @@ var shuffleCards = function() {
 
 var createBoard = function() {
 	shuffleCards(); // Mix up the cards array
-	for (var i = 0; i < cards.length; i++) {
-		var cardElement = document.createElement('img');
+	var l = cards.length;
+	var cardElement;
+	for (var i = 0; i < l; i++) {
+		cardElement = document.createElement('img');
 		cardElement.setAttribute('src','images/back.png');
 		cardElement.setAttribute('data-id',i);
 		cardElement.addEventListener('click',flipCard);
@@ -114,24 +116,28 @@ var nextTurn = function() {
 		firstCardSelected.setAttribute('src','images/back.png');
 	if (secondCardSelected) // Make sure the second card was selected.
 		secondCardSelected.setAttribute('src','images/back.png');
+	firstCardSelected = secondCardSelected = null;
 	// Clear out cardsInPlay so that 2 cards may be selected again
 	cardsInPlay = [];
 }
 
-// newGame will remove all the cards from the game-board, then re-create the game-board.
+// newGame will remove all the cards from the game-board, then re-create the game-board. This is
+// necessary so that the cards can be shuffled into a new order.
 
 var newGame = function() {
 	// Remove all the cards from the game-board div
 	var divGameBoard = document.getElementById("game-board");
 	while (divGameBoard.hasChildNodes())
 		divGameBoard.removeChild(divGameBoard.firstChild);
-	createBoard();	// Recreate the game board with the shuffled cards
+	createBoard();	//  Shuffle the cards and recreate the game board
 	// Clear out cardsInPlay so that 2 cards may be selected again
+	firstCardSelected = secondCardSelected = null;
 	cardsInPlay = [];
-	updateScore(0);
+	updateScore(0); // reset the score to 0
 }
 
-createBoard();
+createBoard(); // Shuffle the cards and create the board
+
 // Set the Next Turn button to execute nextTurn when clicked.
 document.getElementById("next turn").addEventListener('click',nextTurn);
 

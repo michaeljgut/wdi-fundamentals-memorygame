@@ -53,7 +53,7 @@ main {
 }
 
 img {
-	margin: 40px 8px 0 8px;
+	margin: 0 8px 0 8px;
 }
 
 footer {
@@ -64,6 +64,7 @@ footer {
 	font-size: 14px;
 	letter-spacing: .08em;
 	font-weight: 500;
+	margin: -20px 0 0 0;
 }
 
 .copyright, .message {
@@ -106,4 +107,10 @@ button {
 	color: white;
 	padding: 5px 20px;
 	margin: 15px 0 -5px 0;
+}
+
+#score-text, #score {
+	padding: 5px 10px;
+	background-color: rgb(50,50,200);
+	color: white;
 }
