@@ -125,13 +125,17 @@ var nextTurn = function() {
 // necessary so that the cards can be shuffled into a new order.
 
 var newGame = function() {
-	// Remove all the cards from the game-board div
+	// Make sure all the cards are turned over
 	var divGameBoard = document.getElementById("game-board");
-	while (divGameBoard.hasChildNodes())
-		divGameBoard.removeChild(divGameBoard.firstChild);
-	createBoard();	//  Shuffle the cards and recreate the game board
+	var divChild = divGameBoard.firstChild;
+	while (divChild !== divGameBoard.lastChild) {
+		divChild.setAttribute('src','images/back.png');
+		divChild = divChild.nextSibling;
+	}
+	divChild.setAttribute('src','images/back.png');
+	shuffleCards();	// Now mix up the cards array
+	firstCardSelected = secondCardSelected = null;	// Reset for new game
 	// Clear out cardsInPlay so that 2 cards may be selected again
-	firstCardSelected = secondCardSelected = null;
 	cardsInPlay = [];
 	updateScore(0); // reset the score to 0
 }
