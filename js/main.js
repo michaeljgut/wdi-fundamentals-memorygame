@@ -5,7 +5,9 @@ Concentration Card Game - basic simulation of the game only with 4 cards: the qu
 queen of diamonds, king of hearts and king of diamonds. Cards are selected by clicking on them. 
 After 2 cards are selected, their ranks are compared. When a match is found, the score is increased 
 by 1. If no match is found, the user must press the next turn button to turn the cards back over. To 
-reset the score, the user must press the new game button. */
+reset the score, the user must press the new game button. Note: I took out the alerts as part of
+bonus challenge to make the game better and added the next turn and new game buttons, since alerts 
+are annoying. I also added a shuffle algorithm to make the card order random.*/
 
 // The cards array holds the 4 cards.
 var cards = [
@@ -37,18 +39,21 @@ var cardsInPlay = [];
 // score represents the number of matches found
 var score = 0;
 
-var firstCardSelected = null;	// Will hold the first card selected. Used in nextTurn to flip 
-								// the card back over.
+var firstCardSelected = null;	// Will hold the image element of the first card selected. Used in 
+								// nextTurn to flip the card back over.
 
-var secondCardSelected = null;	// Will hold the second card selected. Used in nextTurn to flip 
-								// the card back over.
+var secondCardSelected = null;	// Will hold the image element of the second card selected. Used in 
+								// nextTurn to flip the card back over.
+
+var scoreElement = document.getElementsByClassName('score')[0]; // scoreElement is used in  
+// updateScore to update the score.
 
 // updateScore takes the new score as a parameter and updates the global score variable, then writes
 // the new score to the screen using the textContent property.
 
 var updateScore = function(newScore) {
 	score = newScore;
-	document.getElementById('score').textContent = score;
+	scoreElement.textContent = score;
 }
 
 // flipCard is executed when a card is clicked. It simulates turning the card over. The image is
@@ -64,7 +69,10 @@ var flipCard = function() {
 	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
 			updateScore(score + 1);
+			// alert("You found a match!");
 		}
+		// else
+			// alert("Sorry, try again.");
 		cardsInPlay = [];
 		secondCardSelected = this;
 	}
@@ -74,8 +82,8 @@ var flipCard = function() {
 
 // shuffleCards will use an algorithm from the https://jsperf.com/array-shuffle-comparator/5 web 
 // site which I modified to "shuffle" the cards array. Pick a card at random from 0 to the length 
-// of the cards array - 1. Swap this card with the last card. Then repeat this process only picking
-// a random card from 0 to the length - 2, then 0 to the length - 3 etc. until n = 0 and all the
+// of the cards array - 2. Swap this card with the last card. Then repeat this process only picking
+// a random card from 0 to the length - 3, then 0 to the length - 4 etc. until n = 0 and all the
 // cards have been shuffled.
 
 var shuffleCards = function() {
@@ -83,7 +91,8 @@ var shuffleCards = function() {
 	var i = 0;
 	var temp;
 	while (--n) { // Decrease n before checking its truthiness to skip the last case where n === 0.
-		i = Math.floor(Math.random() * n);
+		i = Math.floor(Math.random() * (n-1));	// Pick a number between 0 and the next to last card.
+		// Now swap cards[i] with cards[n].
 		temp = cards[i];
 		cards[i] = cards[n];
 		cards[n] = temp;
@@ -132,7 +141,7 @@ var newGame = function() {
 		divChild.setAttribute('src','images/back.png');
 		divChild = divChild.nextSibling;
 	}
-	divChild.setAttribute('src','images/back.png');
+	divChild.setAttribute('src','images/back.png'); // Now set the last child image
 	shuffleCards();	// Now mix up the cards array
 	firstCardSelected = secondCardSelected = null;	// Reset for new game
 	// Clear out cardsInPlay so that 2 cards may be selected again

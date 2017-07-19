@@ -2,11 +2,12 @@
 Author: Michael Gutleber
 Date: 7/3/2017
 Desc: Concentration Card Game - The cards for the game are created in main.js and appended to the
-div with id "game-board." -->
+div element with id "game-board." -->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Memory Card Game</title>
+	<link href="css/normalize.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Droid+Serif|Raleway:400,500,600,700" rel="stylesheet">
 </head>
@@ -19,17 +20,18 @@ div with id "game-board." -->
 </nav>
 <main>
 <h2>Instructions</h2>
-<p>Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards. Click on the card to turn it over and see its face value. After 2 cards are selected, their ranks are compared. When a match is found, the score is increased by 1. If no match is found, press the Next Turn button to turn the cards back over. After all the matches are found, click the New Game button to shuffle the deck and start over!</p>
+<p>Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards. Click on the card to turn it over and see its face value. After 2 cards are selected, their ranks are compared. When a match is found, the score is increased by 1. If no match is found, press the Next Turn button to turn the cards back over. After all the matches are found, click the New Game button to shuffle the cards and start over!</p>
 <h2>Why Play?</h2>
 <p>This is a great game to challenge your memory and compare yourself to others. See who has the best memory!</p>
 <h2>About The Author</h2>
-<p>Learn more about Michael Gutleber through his <a href="https://www.linkedin.com/in/michael-gutleber-18867911">linkedin account</a> or follow him on <a href="https://twitter.com/michaeljgut2">twitter</a></p>
+<p>Learn more about Michael Gutleber through his <a href="https://www.linkedin.com/in/michael-gutleber-18867911">linkedin account</a> or follow him on <a href="https://twitter.com/michaeljgut2">twitter</a>!</p>
 <div id="game-board"></div>
 <button id ="next turn">Next Turn</button><button id="new game">New Game</button>
-<p><span id ="score-text">Score: </span><span id="score">0</span></p>
+<p><span class="score-text">Score: </span><span class="score">0</span></p>
 </main>
 <footer class="clearfix">
-	<p class="copyright">Copyright 2017</p>
+	<!-- Changed to copyright symbol so the footer would fit on one line on small screens -->
+	<p class="copyright">&copy; 2017</p>
 	<p class="message">Created with &hearts; by <span class="name">GA</span></p>
 </footer>
 <script src="js/main.js" type="text/javascript"></script>

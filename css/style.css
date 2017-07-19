@@ -108,8 +108,38 @@ button {
 	margin: 15px 10px 5px 10px;
 }
 
-#score-text, #score {
+.score-text, .score {
 	padding: 5px 10px;
 	background-color: rgb(50,50,200);
 	color: white;
+}
+/* Make a smaller version of the game for smaller screens */
+
+@media(max-width: 900px){
+	main {
+		width: 275px;
+	}
+	img {
+			width: 50px;
+	}
+	button {
+		font-size: 15px;
+		padding: 0 10px;
+	}
+	.score-text, .score {
+		padding: 0 5px;
+		font-size: 15;
+	}
+	h1 {
+		font-size: 20px;
+	}
+	h2 {
+		font-size: 15px;
+	}
+	nav, p {
+		font-size: 14px;
+	}
+	footer {
+		font-size: 10px;
+	}
 }
